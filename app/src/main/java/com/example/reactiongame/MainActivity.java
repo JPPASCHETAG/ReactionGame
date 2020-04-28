@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                     text.setVisibility(View.VISIBLE);
                     text.setText(result);
 
+                    beer_image = findViewById(R.id.prost);
+                    beer_image.setVisibility(View.VISIBLE);
+
                     btn = btn.findViewById(R.id.button);
                     btn.setText("Neuer Versuch");
                     btn.setVisibility(View.VISIBLE);
@@ -67,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
                     text = text.findViewById(R.id.textView2);
                     text.setVisibility(View.VISIBLE);
                     text.setText("Du warst zu früh dran. Trink 10.");
+
+                    beer_image = findViewById(R.id.prost);
+                    beer_image.setVisibility(View.VISIBLE);
 
                     btn = btn.findViewById(R.id.button);
                     btn.setText("Neuer Versuch");
@@ -85,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void start(View V){
         isClicked = false;
+
+        beer_image = findViewById(R.id.prost);
+        beer_image.setVisibility(View.INVISIBLE);
 
         header = findViewById(R.id.textView);
         text  = findViewById(R.id.textView2);
