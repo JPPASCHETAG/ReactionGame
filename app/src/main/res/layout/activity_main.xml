@@ -49,6 +49,7 @@
         android:layout_marginLeft="137dp"
         android:layout_marginTop="226dp"
         android:background="#FFFFFF"
+        android:fontFamily="@font/montserrat_bold"
         android:onClick="start"
         android:text="Start"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"

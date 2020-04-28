@@ -91,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void start(View V){
         isClicked = false;
+        mainlayout  = findViewById(R.id.layout_activity_main);
+
+        int color = Color.parseColor("#f4cb34");
+        mainlayout.setBackgroundColor(color);
 
         beer_image = findViewById(R.id.prost);
         beer_image.setVisibility(View.INVISIBLE);
@@ -98,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         header = findViewById(R.id.textView);
         text  = findViewById(R.id.textView2);
         btn   = findViewById(R.id.button);
-        mainlayout  = findViewById(R.id.layout_activity_main);
+
 
         header.setVisibility(View.INVISIBLE);
         text.setVisibility(View.INVISIBLE);
