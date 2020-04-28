@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,8 +17,11 @@ public class MainActivity extends AppCompatActivity {
     TextView text;
     Button  btn;
     ConstraintLayout mainlayout;
+    ImageView beer_image;
+
 
     long startTime = 0;
+    boolean isClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,42 +29,67 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mainlayout  = findViewById(R.id.layout_activity_main);
-
         mainlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             long endTime = System.currentTimeMillis();
+            double reactionTime = ((double)endTime - (double)startTime) / 1000;
+            String result  = "Deine Reaktionszeit war: " + reactionTime +"s. \n Du musst "+ Math.round(reactionTime / 0.1) + " trinken!";
 
-            long reactionTime = (endTime - startTime);
-
-            String result  = "Deine Reaktionszeit war: " + reactionTime +"s. Du musst .... trinken!";
-
-            if(startTime != 0) {
-
-                text = text.findViewById(R.id.textView2);
-                text.setVisibility(View.VISIBLE);
-                text.setText(result);
-
-                System.out.println(reactionTime);
+            if(isClicked){
+                return;
             }else{
-                text = text.findViewById(R.id.textView2);
-                text.setVisibility(View.VISIBLE);
-                text.setText("Du warst zu früh dran. Trink 10.");
 
-                System.out.println("keine Startzeit");
+                mainlayout  = findViewById(R.id.layout_activity_main);
+
+                if(startTime != 0) {
+
+                    int color = Color.parseColor("#f4cb34");
+                    mainlayout.setBackgroundColor(color);
+
+                    text = text.findViewById(R.id.textView2);
+                    text.setVisibility(View.VISIBLE);
+                    text.setText(result);
+
+                    btn = btn.findViewById(R.id.button);
+                    btn.setText("Neuer Versuch");
+                    btn.setVisibility(View.VISIBLE);
+
+                    //Zurücksetzen und andere Clicks abfangen
+                    isClicked = true;
+                    startTime = 0;
+                }else{
+
+                    int red = Color.parseColor("#9e3030");
+                    mainlayout.setBackgroundColor(red);
+
+                    text = text.findViewById(R.id.textView2);
+                    text.setVisibility(View.VISIBLE);
+                    text.setText("Du warst zu früh dran. Trink 10.");
+
+                    btn = btn.findViewById(R.id.button);
+                    btn.setText("Neuer Versuch");
+                    btn.setVisibility(View.VISIBLE);
+
+                    //Zurücksetzen und andere Clicks abfangen
+                    isClicked = true;
+                    startTime = 0;
+                }
             }
+
             }
         });
     }
 
 
     public void start(View V){
+        isClicked = false;
 
-          header = findViewById(R.id.textView);
-          text  = findViewById(R.id.textView2);
-          btn   = findViewById(R.id.button);
-          mainlayout  = findViewById(R.id.layout_activity_main);
+        header = findViewById(R.id.textView);
+        text  = findViewById(R.id.textView2);
+        btn   = findViewById(R.id.button);
+        mainlayout  = findViewById(R.id.layout_activity_main);
 
         header.setVisibility(View.INVISIBLE);
         text.setVisibility(View.INVISIBLE);
@@ -75,10 +104,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                int red = Color.parseColor("#FF0000");
-                mainlayout.setBackgroundColor(red);
+        int red = Color.parseColor("#9e3030");
+        mainlayout.setBackgroundColor(red);
 
-                startTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
             }
         }, delay);
     }
