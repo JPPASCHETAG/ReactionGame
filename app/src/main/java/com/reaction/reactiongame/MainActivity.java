@@ -1,4 +1,4 @@
-package com.example.reactiongame;
+package com.reaction.reactiongame;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;

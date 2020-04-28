@@ -1,4 +1,4 @@
-package com.example.reactiongame;
+package com.reaction.reactiongame;
 
 import org.junit.Test;
 
