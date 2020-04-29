@@ -35,21 +35,26 @@ public class MainActivity extends AppCompatActivity {
 
             long endTime = System.currentTimeMillis();
             double reactionTime = ((double)endTime - (double)startTime) / 1000;
-            String result  = "Deine Reaktionszeit war: " + reactionTime +"s. \n Du musst "+ Math.round(reactionTime / 0.1) + " trinken!";
 
             if(isClicked){
                 return;
             }else{
-
                 mainlayout  = findViewById(R.id.layout_activity_main);
 
                 if(startTime != 0) {
+                    //Wenn eine Reaktionszeit berechnet werden kann
+                    String result;
 
                     int color = Color.parseColor("#f4cb34");
                     mainlayout.setBackgroundColor(color);
 
                     text = text.findViewById(R.id.textView2);
                     text.setVisibility(View.VISIBLE);
+                    if(reactionTime > 0.3) {
+                        result = "Deine Reaktionszeit war: " + reactionTime + "s. \n Du musst " + Math.round((reactionTime-0.3) / 0.1) + " trinken!";
+                    }else{
+                        result = "Deine Reaktionszeit war: " + reactionTime + "s. \n Du darfst 5 verteilen.";
+                    }
                     text.setText(result);
 
                     beer_image = findViewById(R.id.prost);
